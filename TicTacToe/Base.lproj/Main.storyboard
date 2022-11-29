@@ -22,7 +22,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="xql-eB-NR9">
                                         <rect key="frame" x="0.0" y="0.0" width="353.66666666666669" height="114.66666666666667"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cxa-a8-h8M">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aPl-Oj-TqG">
                                                 <rect key="frame" x="0.0" y="0.0" width="114.66666666666667" height="114.66666666666667"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="60"/>
@@ -31,10 +31,10 @@
                                                     <color key="titleColor" systemColor="systemYellowColor"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="buttonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SPn-FI-7EA"/>
+                                                    <action selector="buttonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ULx-IL-ie9"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aPl-Oj-TqG">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2Z-zX-cPg">
                                                 <rect key="frame" x="119.66666666666669" y="0.0" width="114.33333333333331" height="114.66666666666667"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="60"/>
@@ -43,7 +43,7 @@
                                                     <color key="titleColor" systemColor="systemYellowColor"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="buttonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ULx-IL-ie9"/>
+                                                    <action selector="buttonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pvh-9X-7fp"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jq2-0z-bI5">
@@ -190,7 +190,7 @@
                         <outlet property="p2TurnLabel" destination="7qX-co-XWv" id="FC5-Ch-d5P"/>
                         <outlet property="p2TurnTextForFlip" destination="2ff-4a-qtI" id="VpU-ox-8xv"/>
                         <outlet property="row1Btn1" destination="aPl-Oj-TqG" id="1SY-3F-BdE"/>
-                        <outlet property="row1Btn2" destination="aPl-Oj-TqG" id="noY-BJ-5c6"/>
+                        <outlet property="row1Btn2" destination="y2Z-zX-cPg" id="WzL-cJ-s6k"/>
                         <outlet property="row1Btn3" destination="Jq2-0z-bI5" id="J8d-YJ-ATW"/>
                         <outlet property="row2Btn1" destination="bc7-Tj-pcX" id="0SC-9k-Gky"/>
                         <outlet property="row2Btn2" destination="3yH-pE-9wf" id="nvx-x0-HsY"/>
