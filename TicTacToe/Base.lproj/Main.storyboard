@@ -46,6 +46,18 @@
                                     <segue destination="cTg-6r-U3l" kind="show" id="9xB-KG-sj7"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="yIT-Pf-UyG">
+                                <rect key="frame" x="51" y="301" width="290" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="1v1"/>
+                                    <segment title="Easy Comp"/>
+                                    <segment title="Hard Comp"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentClick:" destination="fcK-bb-zQr" eventType="valueChanged" id="P8f-AN-nEb"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MK9-PF-Ja5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -53,6 +65,7 @@
                     <connections>
                         <outlet property="player1NameTextField" destination="m2w-cB-lC4" id="ZD4-bD-S3X"/>
                         <outlet property="player2NameTextField" destination="D1t-5I-eep" id="YEz-so-GiR"/>
+                        <outlet property="segmentControllOutlet" destination="yIT-Pf-UyG" id="qGM-3g-vmS"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="segueFromStartToGame" id="MvB-vP-l9f"/>
                     </connections>
                 </viewController>

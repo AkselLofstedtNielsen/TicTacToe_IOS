@@ -9,6 +9,10 @@ import UIKit
 
 class ViewController: UIViewController {
     
+
+    var chosenGameMode = 0
+    //int that is being sent from startVC 0 = 1v1(standard), 1 = easyBot, 2 = hardBot
+    
     var p1Name : String?
     var p2Name : String?
     
@@ -49,6 +53,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         initBoard()
+        print(String(chosenGameMode))
         
         p2TurnLabel.transform = CGAffineTransform(rotationAngle: 3.14)
         p2TurnTextForFlip.transform = CGAffineTransform(rotationAngle: 3.14)
