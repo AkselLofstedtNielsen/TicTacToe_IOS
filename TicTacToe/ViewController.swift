@@ -9,6 +9,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var p1Name : String?
+    var p2Name : String?
+    
     enum Turn{
         case Circle
         case Cross
@@ -20,6 +23,9 @@ class ViewController: UIViewController {
     var CROSS = "X"
     
     var board = [UIButton]()
+    
+    var p1Score = 0
+    var p2Score = 0
 
     @IBOutlet weak var p1TurnLabel: UILabel!
     //x = p1
@@ -42,9 +48,18 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        initBoard()
+        
         p2TurnLabel.transform = CGAffineTransform(rotationAngle: 3.14)
         p2TurnTextForFlip.transform = CGAffineTransform(rotationAngle: 3.14)
-        initBoard()
+       
+        if let player1NameFromStart = p1Name{
+            p1TurnLabel.text = player1NameFromStart
+        }
+        if let player2NameFromStart = p2Name{
+            p2TurnLabel.text = player2NameFromStart
+        }
+      
     }
     
     func initBoard(){
@@ -64,13 +79,22 @@ class ViewController: UIViewController {
     @IBAction func buttonPress(_ sender: UIButton) {
         addToBoard(sender)
         
+        if checkForWin(symbol: CROSS){
+            p1Score += 1
+            resultAlert(title: "\(p1Name ?? "X") Wins!")
+        }
+        if checkForWin(symbol: CIRCLE){
+            p2Score += 1
+            resultAlert(title: "\(p2Name ?? "O") Wins!")
+        }
+        
         if(fullBoard()){
             resultAlert(title: "Draw")
         }
-        
     }
     func resultAlert(title : String){
-        let ac = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
+        let message = "\n\(p1Name ?? "X") " + String(p1Score) + "\n\(p2Name ?? "O") " + String(p2Score)
+        let ac = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         ac.addAction(UIAlertAction(title: "Reset", style: .default, handler: {(_) in
             self.resetBoard()
         }))
@@ -83,14 +107,54 @@ class ViewController: UIViewController {
         }
         if firstTurn == Turn.Circle{
             firstTurn = Turn.Cross
-            p1TurnLabel.text = CROSS
-            p2TurnLabel.text = CROSS
+            p1TurnLabel.text = p1Name
+            p2TurnLabel.text = p1Name
         }else if firstTurn == Turn.Cross{
             firstTurn = Turn.Circle
-            p1TurnLabel.text = CIRCLE
-            p2TurnLabel.text = CIRCLE
+            p1TurnLabel.text = p2Name
+            p2TurnLabel.text = p2Name
         }
         currentTurn = firstTurn
+    }
+    func checkForWin (symbol : String) -> Bool{
+        //horizontal
+        if thisSymbol(button: row1Btn1, symbol: symbol) && thisSymbol(button: row1Btn2, symbol: symbol) && thisSymbol(button: row1Btn3, symbol: symbol){
+            return true
+        }
+        else if thisSymbol(button: row2Btn1, symbol: symbol) && thisSymbol(button: row2Btn2, symbol: symbol) && thisSymbol(button: row2Btn3, symbol: symbol){
+            return true
+        }
+        else if thisSymbol(button: row3Btn1, symbol: symbol) && thisSymbol(button: row3Btn2, symbol: symbol) && thisSymbol(button: row3Btn3, symbol: symbol){
+            return true
+        }
+        //vertical
+        else if thisSymbol(button: row1Btn1, symbol: symbol) && thisSymbol(button: row2Btn1, symbol: symbol) && thisSymbol(button: row3Btn1, symbol: symbol){
+            return true
+        }
+        else if thisSymbol(button: row1Btn2, symbol: symbol) && thisSymbol(button: row2Btn2, symbol: symbol) && thisSymbol(button: row3Btn2, symbol: symbol){
+            return true
+        }
+        else if thisSymbol(button: row1Btn3, symbol: symbol) && thisSymbol(button: row2Btn3, symbol: symbol) && thisSymbol(button: row3Btn3, symbol: symbol){
+            return true
+        }
+        //diagonal
+        else if thisSymbol(button: row1Btn1, symbol: symbol) && thisSymbol(button: row2Btn2, symbol: symbol) && thisSymbol(button: row3Btn3, symbol: symbol){
+            return true
+        }
+        else if thisSymbol(button: row1Btn3, symbol: symbol) && thisSymbol(button: row2Btn2, symbol: symbol) && thisSymbol(button: row3Btn1, symbol: symbol){
+            return true
+        }
+        
+   
+        return false
+    }
+    func thisSymbol(button : UIButton, symbol : String) -> Bool{
+        if button.title(for: .normal) == symbol{
+            return true
+        }
+        else {
+            return false
+        }
     }
     func fullBoard() -> Bool{
         for buttons in board
@@ -103,19 +167,36 @@ class ViewController: UIViewController {
         return true
     }
     func addToBoard(_ sender: UIButton){
+        for buttons in board{
+            if buttons == sender{
+                print("knapp" + "\(buttons)")
+            }
+        }
         if(sender.title(for: .normal) == nil){
             if(currentTurn == Turn.Circle){
                 sender.setTitle(CIRCLE, for: .normal)
                 currentTurn = Turn.Cross
-                p1TurnLabel.text = CROSS
-                p2TurnLabel.text = CROSS
+                p1TurnLabel.text = p1Name
+                p2TurnLabel.text = p1Name
             }else if(currentTurn == Turn.Cross){
                 sender.setTitle(CROSS, for: .normal)
                 currentTurn = Turn.Circle
-                p1TurnLabel.text = CIRCLE
-                p2TurnLabel.text = CIRCLE
+                p1TurnLabel.text = p2Name
+                p2TurnLabel.text = p2Name
             }
         }
+    }
+    
+    func randomAI() {
+        var aiButton : UIButton!
+        aiButton.setTitle("O", for: .normal)
+        
+        //Välj en "random" position i Board, ifall knappen har title = nil
+        //kör addToBoard med aiButton, annars välj en ny random position.
+        // Behöver fixa till addToBoard func så den exempelVis kollar ifall 1vsAI är true innan existerande IF satser
+        //
+        
+        
     }
     
 }
