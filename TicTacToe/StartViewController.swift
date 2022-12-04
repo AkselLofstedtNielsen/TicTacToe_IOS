@@ -15,10 +15,7 @@ class StartViewController: UIViewController {
     var gameMode = 0
     
     @IBOutlet weak var player1NameTextField: UITextField!
-    var player1 = ""
-    
     @IBOutlet weak var player2NameTextField: UITextField!
-    var player2 = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,15 +42,13 @@ class StartViewController: UIViewController {
     }
     
     @IBAction func playBtn(_ sender: UIButton) {
-        player1 = player1NameTextField.text ?? "Y"
-        player2 = player2NameTextField.text ?? "Y"
         performSegue(withIdentifier: segueToGame, sender: self)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == segueToGame{
             let destinationVC = segue.destination as? ViewController
-            destinationVC?.p1Name = player1
-            destinationVC?.p2Name = player2
+            destinationVC?.p1Name = player1NameTextField.text
+            destinationVC?.p2Name = player2NameTextField.text
             destinationVC?.chosenGameMode = gameMode
         
         }
