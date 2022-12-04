@@ -27,6 +27,7 @@ class ViewController: UIViewController {
     var CROSS = "X"
     
     var board = [UIButton]()
+    var usedBoard = [UIButton]()
     
     var p1Score = 0
     var p2Score = 0
@@ -82,20 +83,42 @@ class ViewController: UIViewController {
     }
 
     @IBAction func buttonPress(_ sender: UIButton) {
-        addToBoard(sender)
-        
-        if checkForWin(symbol: CROSS){
-            p1Score += 1
-            resultAlert(title: "\(p1Name ?? "X") Wins!")
+        if chosenGameMode == 0{
+            addToBoard(sender)
+            
+            if checkForWin(symbol: CROSS){
+                p1Score += 1
+                resultAlert(title: "\(p1Name ?? "X") Wins!")
+            }
+            if checkForWin(symbol: CIRCLE){
+                p2Score += 1
+                resultAlert(title: "\(p2Name ?? "O") Wins!")
+            }
+            
+            if(fullBoard()){
+                resultAlert(title: "Draw")
+            }
         }
-        if checkForWin(symbol: CIRCLE){
-            p2Score += 1
-            resultAlert(title: "\(p2Name ?? "O") Wins!")
+        else if chosenGameMode == 1{
+            addToBoard(sender)
+            randomAI()
+            usedBoard.append(sender)
+            
+            if checkForWin(symbol: CROSS){
+                p1Score += 1
+                resultAlert(title: "\(p1Name ?? "X") Wins!")
+            }
+            else if checkForWin(symbol: CIRCLE){
+                p2Score += 1
+                resultAlert(title: "\(p2Name ?? "O") Wins!")
+            }
+            else if(fullBoard()){
+                resultAlert(title: "Draw")
+            }
+            
+            
         }
-        
-        if(fullBoard()){
-            resultAlert(title: "Draw")
-        }
+
     }
     func resultAlert(title : String){
         let message = "\n\(p1Name ?? "X") " + String(p1Score) + "\n\(p2Name ?? "O") " + String(p2Score)
@@ -110,16 +133,24 @@ class ViewController: UIViewController {
             button.setTitle(nil, for: .normal)
             button.isEnabled = true
         }
-        if firstTurn == Turn.Circle{
+        if chosenGameMode == 0{
+            if firstTurn == Turn.Circle{
+                firstTurn = Turn.Cross
+                p1TurnLabel.text = p1Name
+                p2TurnLabel.text = p1Name
+            }else if firstTurn == Turn.Cross{
+                firstTurn = Turn.Circle
+                p1TurnLabel.text = p2Name
+                p2TurnLabel.text = p2Name
+            }
+            currentTurn = firstTurn
+        }else{
             firstTurn = Turn.Cross
             p1TurnLabel.text = p1Name
             p2TurnLabel.text = p1Name
-        }else if firstTurn == Turn.Cross{
-            firstTurn = Turn.Circle
-            p1TurnLabel.text = p2Name
-            p2TurnLabel.text = p2Name
+            currentTurn = firstTurn
         }
-        currentTurn = firstTurn
+
     }
     func checkForWin (symbol : String) -> Bool{
         //horizontal
@@ -172,35 +203,51 @@ class ViewController: UIViewController {
         return true
     }
     func addToBoard(_ sender: UIButton){
-        for buttons in board{
-            if buttons == sender{
-                print("knapp" + "\(buttons)")
+            if(sender.title(for: .normal) == nil){
+                    if(currentTurn == Turn.Circle){
+                        sender.setTitle(CIRCLE, for: .normal)
+                        currentTurn = Turn.Cross
+                        p1TurnLabel.text = p1Name
+                        p2TurnLabel.text = p1Name
+                    }else if(currentTurn == Turn.Cross){
+                        sender.setTitle(CROSS, for: .normal)
+                        currentTurn = Turn.Circle
+                        p1TurnLabel.text = p2Name
+                        p2TurnLabel.text = p2Name
+                    }
+                
+            }else {
+              print("använd knapp")
+               
             }
+
         }
-        if(sender.title(for: .normal) == nil){
-            if(currentTurn == Turn.Circle){
-                sender.setTitle(CIRCLE, for: .normal)
-                currentTurn = Turn.Cross
-                p1TurnLabel.text = p1Name
-                p2TurnLabel.text = p1Name
-            }else if(currentTurn == Turn.Cross){
-                sender.setTitle(CROSS, for: .normal)
-                currentTurn = Turn.Circle
-                p1TurnLabel.text = p2Name
-                p2TurnLabel.text = p2Name
-            }
-        }
-    }
     
     func randomAI() {
-        var aiButton : UIButton!
-        aiButton.setTitle("O", for: .normal)
+
+        var listOfAvailableButtons = [UIButton]()
         
+        for buttons in board{
+            if buttons.title(for: .normal) == nil{
+                listOfAvailableButtons.append(buttons)
+            }
+        }
+
+        var random = listOfAvailableButtons.shuffled().first
+
+        if listOfAvailableButtons.count > 0 {
+            addToBoard(random!)
+            listOfAvailableButtons.removeAll()
+        }
+        
+
+        
+       
         //Välj en "random" position i Board, ifall knappen har title = nil
         //kör addToBoard med aiButton, annars välj en ny random position.
         // Behöver fixa till addToBoard func så den exempelVis kollar ifall 1vsAI är true innan existerande IF satser
-        //
-        
+        //behöver möjligtvis en ny func lik addToBoard för AI gamemode
+        //usedboard där alla knappar som blivit valda läggs till i, kolla om den random knappen finns där isåfall ta en ny random
         
     }
     
