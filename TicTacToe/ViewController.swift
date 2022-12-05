@@ -27,7 +27,6 @@ class ViewController: UIViewController {
     var CROSS = "X"
     
     var board = [UIButton]()
-    var usedBoard = [UIButton]()
     
     var p1Score = 0
     var p2Score = 0
@@ -102,7 +101,6 @@ class ViewController: UIViewController {
         else if chosenGameMode == 1{
             addToBoard(sender)
             randomAI()
-            usedBoard.append(sender)
             
             if checkForWin(symbol: CROSS){
                 p1Score += 1
@@ -217,7 +215,7 @@ class ViewController: UIViewController {
                     }
                 
             }else {
-              print("använd knapp")
+            
                
             }
 
@@ -233,7 +231,7 @@ class ViewController: UIViewController {
             }
         }
 
-        var random = listOfAvailableButtons.shuffled().first
+        let random = listOfAvailableButtons.shuffled().first
 
         if listOfAvailableButtons.count > 0 {
             addToBoard(random!)
