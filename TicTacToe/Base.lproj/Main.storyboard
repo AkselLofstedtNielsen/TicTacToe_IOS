@@ -252,18 +252,18 @@
                     </view>
                     <navigationItem key="navigationItem" id="xFM-9j-eCJ"/>
                     <connections>
+                        <outlet property="a1" destination="aPl-Oj-TqG" id="1SY-3F-BdE"/>
+                        <outlet property="a2" destination="y2Z-zX-cPg" id="WzL-cJ-s6k"/>
+                        <outlet property="a3" destination="Jq2-0z-bI5" id="J8d-YJ-ATW"/>
+                        <outlet property="b1" destination="bc7-Tj-pcX" id="0SC-9k-Gky"/>
+                        <outlet property="b2" destination="3yH-pE-9wf" id="nvx-x0-HsY"/>
+                        <outlet property="b3" destination="s1G-hu-Pwa" id="GYn-xV-33S"/>
+                        <outlet property="c1" destination="rJs-k1-swv" id="gDu-5Q-Nzd"/>
+                        <outlet property="c2" destination="CCG-GL-lJm" id="ZuP-qt-IOl"/>
+                        <outlet property="c3" destination="n8V-Td-lGN" id="DAC-8e-XQu"/>
                         <outlet property="p1TurnLabel" destination="MuA-qu-X3g" id="RKR-BN-mn9"/>
                         <outlet property="p2TurnLabel" destination="7qX-co-XWv" id="FC5-Ch-d5P"/>
                         <outlet property="p2TurnTextForFlip" destination="2ff-4a-qtI" id="VpU-ox-8xv"/>
-                        <outlet property="row1Btn1" destination="aPl-Oj-TqG" id="1SY-3F-BdE"/>
-                        <outlet property="row1Btn2" destination="y2Z-zX-cPg" id="WzL-cJ-s6k"/>
-                        <outlet property="row1Btn3" destination="Jq2-0z-bI5" id="J8d-YJ-ATW"/>
-                        <outlet property="row2Btn1" destination="bc7-Tj-pcX" id="0SC-9k-Gky"/>
-                        <outlet property="row2Btn2" destination="3yH-pE-9wf" id="nvx-x0-HsY"/>
-                        <outlet property="row2Btn3" destination="s1G-hu-Pwa" id="GYn-xV-33S"/>
-                        <outlet property="row3Btn1" destination="rJs-k1-swv" id="gDu-5Q-Nzd"/>
-                        <outlet property="row3Btn2" destination="CCG-GL-lJm" id="ZuP-qt-IOl"/>
-                        <outlet property="row3Btn3" destination="n8V-Td-lGN" id="DAC-8e-XQu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

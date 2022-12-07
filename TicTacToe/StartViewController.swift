@@ -45,7 +45,7 @@ class StartViewController: UIViewController {
             let destinationVC = segue.destination as? ViewController
             destinationVC?.p1Name = player1NameTextField.text
             destinationVC?.p2Name = player2NameTextField.text
-            destinationVC?.chosenGameMode = gameMode
+            destinationVC?.gameMode = gameMode
         
         }
     }

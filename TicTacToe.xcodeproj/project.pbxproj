@@ -17,6 +17,7 @@
 		5C8D5633293627AA005A849C /* TicTacToeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D5632293627AA005A849C /* TicTacToeUITests.swift */; };
 		5C8D5635293627AA005A849C /* TicTacToeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D5634293627AA005A849C /* TicTacToeUITestsLaunchTests.swift */; };
 		5C90C7E02938E6F90039C3BE /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C90C7DF2938E6F90039C3BE /* StartViewController.swift */; };
+		5C90C8602940B36D0039C3BE /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C90C85F2940B36D0039C3BE /* Board.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		5C8D5632293627AA005A849C /* TicTacToeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeUITests.swift; sourceTree = "<group>"; };
 		5C8D5634293627AA005A849C /* TicTacToeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5C90C7DF2938E6F90039C3BE /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		5C90C85F2940B36D0039C3BE /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				5C8D5613293627A6005A849C /* SceneDelegate.swift */,
 				5C8D5615293627A6005A849C /* ViewController.swift */,
 				5C90C7DF2938E6F90039C3BE /* StartViewController.swift */,
+				5C90C85F2940B36D0039C3BE /* Board.swift */,
 				5C8D5617293627A6005A849C /* Main.storyboard */,
 				5C8D561A293627AA005A849C /* Assets.xcassets */,
 				5C8D561C293627AA005A849C /* LaunchScreen.storyboard */,
@@ -263,6 +266,7 @@
 			files = (
 				5C8D5616293627A6005A849C /* ViewController.swift in Sources */,
 				5C90C7E02938E6F90039C3BE /* StartViewController.swift in Sources */,
+				5C90C8602940B36D0039C3BE /* Board.swift in Sources */,
 				5C8D5612293627A6005A849C /* AppDelegate.swift in Sources */,
 				5C8D5614293627A6005A849C /* SceneDelegate.swift in Sources */,
 			);
