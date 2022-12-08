@@ -47,10 +47,12 @@ struct Board {
     }
     
     var legalMoves: [Move] {
+        //Returns all availible moves where the position is .E(empty)
         return position.indices.filter { position[$0] == .E }
     }
     
     var isWin: Bool {
+        //Win conditions
         return
         position[0] == position[1] && position[0] == position[2] && position[0] != .E || // row 0
         position[3] == position[4] && position[3] == position[5] && position[3] != .E || // row 1
@@ -102,9 +104,11 @@ struct Board {
         }
         return bestMove
     }
+    //Returns a new empty board
     func newBoard () -> Board{
         return Board()
     }
+    //Return a new board where a a "random" move has been played
     func randomPlacement (board : Board) -> Board{
         let availablePlacements = board.legalMoves
         if availablePlacements.isEmpty{

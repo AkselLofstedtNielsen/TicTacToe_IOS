@@ -47,6 +47,7 @@ class ViewController: UIViewController {
         initButtons()
         implementBoardToTitles()
         
+        //Mirrors player2s texts
         p2TurnLabel.transform = CGAffineTransform(rotationAngle: 3.14)
         p2TurnTextForFlip.transform = CGAffineTransform(rotationAngle: 3.14)
        
@@ -60,6 +61,7 @@ class ViewController: UIViewController {
     }
     
     func initButtons(){
+        //Adds the buttons to an array of buttons
         buttonBoard.append(a1)
         buttonBoard.append(a2)
         buttonBoard.append(a3)
@@ -74,7 +76,6 @@ class ViewController: UIViewController {
     }
 
     @IBAction func buttonPress(_ sender: UIButton) {
-
         if sender.title(for: .normal) == " "{
             switch sender{
             case a1:
@@ -102,6 +103,7 @@ class ViewController: UIViewController {
 
     }
     func makeMove (index : Int){
+        //Function for making a move and checking win or draw per move. For gamemodes 1-3.
         if gameMode == 0{
             board = board.move(index)
             if board.isWin{
@@ -117,37 +119,40 @@ class ViewController: UIViewController {
 
         }
         else if gameMode == 1{
-            //User Input
+            //User Input + win/draw check
             board = board.move(index)
             implementBoardToTitles()
-            if board.isWin == false{
-                        if board.isDraw == false{
-                            //Random Input
-                            board = board.randomPlacement(board: board)
-                            implementBoardToTitles()
-                        }
-                        if board.isWin{
-                            print("Winner: Computer: \(board.position[index].opposite.rawValue)")
-                            board = board.newBoard()
-                            implementBoardToTitles()
-                        }
-            }
             if board.isWin{
                 print("Winner: \(board.position[index].rawValue)")
                 board = board.newBoard()
                 implementBoardToTitles()
             }
-            if board.isDraw{
+            else if board.isDraw{
                 print("Draw")
                 board = board.newBoard()
                 implementBoardToTitles()
             }
+            else{
+                //Random Input+ win/draw check
+                board = board.randomPlacement(board: board)
+                implementBoardToTitles()
+                if board.isWin{
+                print("Winner: Computer: \(board.position[index].opposite.rawValue)")
+                board = board.newBoard()
+                implementBoardToTitles()
+                }
+                else if board.isDraw{
+                print("Draw")
+                board = board.newBoard()
+                implementBoardToTitles()
+                }
+            }
         }
         else if gameMode == 2{
             board = board.move(index)
-            
+            //user input + win/draw check
             if board.isWin == true{
-                print("Winner: Mr Computer")
+                print("Impossible win!")
                 board = board.newBoard()
                 implementBoardToTitles()
             }
@@ -156,20 +161,27 @@ class ViewController: UIViewController {
                 board = board.newBoard()
                 implementBoardToTitles()
             }else{
-                let aiMove = board.findBestMove(board)
-                let aiBoard = board.move(aiMove)
-                board = aiBoard
-                implementBoardToTitles()
-                if board.isDraw{
-                    board = board.newBoard()
+                    //Impossible computer input + win/draw check
+                    let aiMove = board.findBestMove(board)
+                    let aiBoard = board.move(aiMove)
+                    board = aiBoard
                     implementBoardToTitles()
-                }
+                    if board.isWin == true{
+                        print("Winner: Computer")
+                        board = board.newBoard()
+                        implementBoardToTitles()
+                    }
+                    else if board.isDraw{
+                        board = board.newBoard()
+                        implementBoardToTitles()
+                    }
 
             }
         }
     }
 
     func implementBoardToTitles (){
+        //Implementing the "Board" to the buttons titles for the user to see and interact with.
         var i = 0
         for pieces in board.position{
             buttonBoard[i].setTitle(pieces.rawValue, for: .normal)
@@ -209,6 +221,11 @@ class ViewController: UIViewController {
 //        }
 //
 //    }
+    //Fixa resultAlert
+    //Fixa points-count
+    //Fixa Player names
+    //
+    
 
     }
     
