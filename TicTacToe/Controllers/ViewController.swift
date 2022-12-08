@@ -106,15 +106,13 @@ class ViewController: UIViewController {
         //Function for making a move and checking win or draw per move. For gamemodes 1-3.
         if gameMode == 0{
             board = board.move(index)
+            implementBoardToTitles()
             if board.isWin{
-                print("Winner: \(board.position[index].rawValue)")
-                board = board.newBoard()
-                implementBoardToTitles()
+                win()
+                
             }
-            if board.isDraw{
-                print("Draw")
-                board = board.newBoard()
-                implementBoardToTitles()
+            else if board.isDraw{
+                resultAlert(title: "Draw!")
             }
 
         }
@@ -123,28 +121,20 @@ class ViewController: UIViewController {
             board = board.move(index)
             implementBoardToTitles()
             if board.isWin{
-                print("Winner: \(board.position[index].rawValue)")
-                board = board.newBoard()
-                implementBoardToTitles()
+                win()
             }
             else if board.isDraw{
-                print("Draw")
-                board = board.newBoard()
-                implementBoardToTitles()
+                resultAlert(title: "Draw")
             }
             else{
                 //Random Input+ win/draw check
                 board = board.randomPlacement(board: board)
                 implementBoardToTitles()
                 if board.isWin{
-                print("Winner: Computer: \(board.position[index].opposite.rawValue)")
-                board = board.newBoard()
-                implementBoardToTitles()
+                    win()
                 }
                 else if board.isDraw{
-                print("Draw")
-                board = board.newBoard()
-                implementBoardToTitles()
+                    resultAlert(title: "Draw")
                 }
             }
         }
@@ -152,14 +142,10 @@ class ViewController: UIViewController {
             board = board.move(index)
             //user input + win/draw check
             if board.isWin == true{
-                print("Impossible win!")
-                board = board.newBoard()
-                implementBoardToTitles()
+                win()
             }
             else if board.isDraw == true {
-                print("Draw")
-                board = board.newBoard()
-                implementBoardToTitles()
+                resultAlert(title: "Draw")
             }else{
                     //Impossible computer input + win/draw check
                     let aiMove = board.findBestMove(board)
@@ -167,19 +153,37 @@ class ViewController: UIViewController {
                     board = aiBoard
                     implementBoardToTitles()
                     if board.isWin == true{
-                        print("Winner: Computer")
-                        board = board.newBoard()
-                        implementBoardToTitles()
+                        win()
                     }
                     else if board.isDraw{
-                        board = board.newBoard()
-                        implementBoardToTitles()
+                        resultAlert(title: "Draw")
                     }
 
             }
         }
     }
-
+    func win(){
+        if board.position[board.lastMove].rawValue == "X"{
+            p1Score += 1
+            resultAlert(title: "Winner: \(p1Name ?? "X")")
+        }else{
+            p2Score += 1
+            resultAlert(title: "Winner: \(p2Name ?? "O")")
+        }
+    }
+    func resultAlert(title : String){
+        let message = "\n\(p1Name ?? "X") " + String(p1Score) + "\n\(p2Name ?? "O") " + String(p2Score)
+        let ac = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        ac.addAction(UIAlertAction(title: "Reset", style: .default, handler: {(_) in
+            self.resetBoard()
+        }))
+        self.present(ac, animated: true)
+     }
+    
+    func resetBoard(){
+        board = board.newBoard()
+        implementBoardToTitles()
+    }
     func implementBoardToTitles (){
         //Implementing the "Board" to the buttons titles for the user to see and interact with.
         var i = 0
@@ -188,15 +192,9 @@ class ViewController: UIViewController {
             i += 1
 
         }
+        
     }
-//    func resultAlert(title : String){
-//        let message = "\n\(p1Name ?? "X") " + String(p1Score) + "\n\(p2Name ?? "O") " + String(p2Score)
-//        let ac = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
-//        ac.addAction(UIAlertAction(title: "Reset", style: .default, handler: {(_) in
-//            self.resetBoard()
-//        }))
-//        self.present(ac, animated: true)
-//    }
+
 //    func resetBoard(){
 //        for button in buttonBoard{
 //            button.setTitle(nil, for: .normal)
