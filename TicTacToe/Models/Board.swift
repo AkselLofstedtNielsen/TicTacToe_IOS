@@ -107,9 +107,15 @@ struct Board {
     }
     func randomPlacement (board : Board) -> Board{
         let availablePlacements = board.legalMoves
-        let randomMove = availablePlacements.shuffled().first
-       
-        return move(randomMove ?? 4)
+        if availablePlacements.isEmpty{
+            let emptyBoard = Board()
+            return emptyBoard
+        }else{
+            let randomMove = availablePlacements.shuffled().first
+            return move(randomMove!)
+            
+        }
+     
     }
     
     

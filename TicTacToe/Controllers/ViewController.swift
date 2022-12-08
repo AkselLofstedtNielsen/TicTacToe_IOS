@@ -45,7 +45,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         initButtons()
-        print("Hej")
         implementBoardToTitles()
         
         p2TurnLabel.transform = CGAffineTransform(rotationAngle: 3.14)
@@ -105,15 +104,44 @@ class ViewController: UIViewController {
     func makeMove (index : Int){
         if gameMode == 0{
             board = board.move(index)
-            implementBoardToTitles()
-            checkWinOrDraw(index: index)
-            
+            if board.isWin{
+                print("Winner: \(board.position[index].rawValue)")
+                board = board.newBoard()
+                implementBoardToTitles()
+            }
+            if board.isDraw{
+                print("Draw")
+                board = board.newBoard()
+                implementBoardToTitles()
+            }
+
         }
         else if gameMode == 1{
+            //User Input
             board = board.move(index)
-            board = board.randomPlacement(board: board)
             implementBoardToTitles()
-            checkWinOrDraw(index: index)
+            if board.isWin == false{
+                        if board.isDraw == false{
+                            //Random Input
+                            board = board.randomPlacement(board: board)
+                            implementBoardToTitles()
+                        }
+                        if board.isWin{
+                            print("Winner: Computer: \(board.position[index].opposite.rawValue)")
+                            board = board.newBoard()
+                            implementBoardToTitles()
+                        }
+            }
+            if board.isWin{
+                print("Winner: \(board.position[index].rawValue)")
+                board = board.newBoard()
+                implementBoardToTitles()
+            }
+            if board.isDraw{
+                print("Draw")
+                board = board.newBoard()
+                implementBoardToTitles()
+            }
         }
         else if gameMode == 2{
             board = board.move(index)
@@ -132,24 +160,15 @@ class ViewController: UIViewController {
                 let aiBoard = board.move(aiMove)
                 board = aiBoard
                 implementBoardToTitles()
-                checkWinOrDraw(index: index)
+                if board.isDraw{
+                    board = board.newBoard()
+                    implementBoardToTitles()
+                }
+
             }
         }
     }
-    func checkWinOrDraw (index: Int){
-        
-        if board.isWin == true{
-            print("Winner: Jag")
-            board = board.newBoard()
-            implementBoardToTitles()
-        }
-        else if board.isDraw == true {
-            print("Draw")
-            board = board.newBoard()
-            implementBoardToTitles()
-            
-        }
-    }
+
     func implementBoardToTitles (){
         var i = 0
         for pieces in board.position{

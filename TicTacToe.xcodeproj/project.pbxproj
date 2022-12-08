@@ -103,12 +103,11 @@
 		5C8D5610293627A6005A849C /* TicTacToe */ = {
 			isa = PBXGroup;
 			children = (
+				5C938B8C2941ED8E00334FBE /* Controllers */,
+				5C938B8B2941ED7900334FBE /* Models */,
+				5C938B8A2941ED5F00334FBE /* Views */,
 				5C8D5611293627A6005A849C /* AppDelegate.swift */,
 				5C8D5613293627A6005A849C /* SceneDelegate.swift */,
-				5C8D5615293627A6005A849C /* ViewController.swift */,
-				5C90C7DF2938E6F90039C3BE /* StartViewController.swift */,
-				5C90C85F2940B36D0039C3BE /* Board.swift */,
-				5C8D5617293627A6005A849C /* Main.storyboard */,
 				5C8D561A293627AA005A849C /* Assets.xcassets */,
 				5C8D561C293627AA005A849C /* LaunchScreen.storyboard */,
 				5C8D561F293627AA005A849C /* Info.plist */,
@@ -131,6 +130,31 @@
 				5C8D5634293627AA005A849C /* TicTacToeUITestsLaunchTests.swift */,
 			);
 			path = TicTacToeUITests;
+			sourceTree = "<group>";
+		};
+		5C938B8A2941ED5F00334FBE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5C8D5617293627A6005A849C /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5C938B8B2941ED7900334FBE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5C90C85F2940B36D0039C3BE /* Board.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5C938B8C2941ED8E00334FBE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5C8D5615293627A6005A849C /* ViewController.swift */,
+				5C90C7DF2938E6F90039C3BE /* StartViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
