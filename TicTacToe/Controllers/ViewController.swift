@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-
+    
     var gameMode = 2
     //int that is being sent from startVC 0 = 1v1(standard), 1 = easyBot, 2 = hardBot
     
@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     
     var p1Score = 0
     var p2Score = 0
-
+    
     @IBOutlet weak var p1TurnLabel: UILabel!
     //x = p1
     @IBOutlet weak var p2TurnLabel: UILabel!
@@ -50,15 +50,16 @@ class ViewController: UIViewController {
         //Mirrors player2s texts
         p2TurnLabel.transform = CGAffineTransform(rotationAngle: 3.14)
         p2TurnTextForFlip.transform = CGAffineTransform(rotationAngle: 3.14)
+        
+        
+            p1TurnLabel.text = p1Name
+            p2TurnLabel.text = p1Name
+        
        
-        if let player1NameFromStart = p1Name{
-            p1TurnLabel.text = player1NameFromStart
-        }
-        if let player2NameFromStart = p2Name{
-            p2TurnLabel.text = player2NameFromStart
-        }
-      
+        
+        
     }
+
     
     func initButtons(){
         //Adds the buttons to an array of buttons
@@ -107,9 +108,9 @@ class ViewController: UIViewController {
         if gameMode == 0{
             board = board.move(index)
             implementBoardToTitles()
+            changeNameLabels()
             if board.isWin{
                 win()
-                
             }
             else if board.isDraw{
                 resultAlert(title: "Draw!")
@@ -194,36 +195,21 @@ class ViewController: UIViewController {
         }
         
     }
-
-//    func resetBoard(){
-//        for button in buttonBoard{
-//            button.setTitle(nil, for: .normal)
-//            button.isEnabled = true
-//        }
-//        if chosenGameMode == 0{
-//            if firstTurn == Turn.Circle{
-//                firstTurn = Turn.Cross
-//                p1TurnLabel.text = p1Name
-//                p2TurnLabel.text = p1Name
-//            }else if firstTurn == Turn.Cross{
-//                firstTurn = Turn.Circle
-//                p1TurnLabel.text = p2Name
-//                p2TurnLabel.text = p2Name
-//            }
-//            currentTurn = firstTurn
-//        }else{
-//            firstTurn = Turn.Cross
-//            p1TurnLabel.text = p1Name
-//            p2TurnLabel.text = p1Name
-//            currentTurn = firstTurn
-//        }
-//
-//    }
-    //Fixa resultAlert
-    //Fixa points-count
-    //Fixa Player names
-    //
-    
+    func changeNameLabels (){
+        //func for changing the labels between turns to the payer whos turn it is.
+        if p1TurnLabel.text == p1Name && p2TurnLabel.text == p1Name{
+            p1TurnLabel.text = p2Name
+            p2TurnLabel.text = p2Name
+        }
+        else if p1TurnLabel.text == p2Name && p2TurnLabel.text == p2Name{
+            p1TurnLabel.text = p1Name
+            p2TurnLabel.text = p1Name
+        }
+        
+    }
+  
+    //Fix Player names per turn
+    //Back button
 
     }
     

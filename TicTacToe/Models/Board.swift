@@ -23,12 +23,11 @@ enum Piece: String {
     }
 }
 
-typealias Move = Int
 
-struct Board {
+class Board {
     var position: [Piece]
     let turn: Piece
-    let lastMove: Move
+    let lastMove: Int
     
     // by default the board is empty and X goes first
     // lastMove being -1 is a marker of a start position
@@ -40,13 +39,13 @@ struct Board {
     
     // location can be 0-8, indicating where to move
     // return a new board with the move played
-    func move(_ location: Move) -> Board {
+    func move(_ location: Int) -> Board {
         var newPosition = position
         newPosition[location] = turn
         return Board(position: newPosition, turn: turn.opposite, lastMove: location)
     }
     
-    var legalMoves: [Move] {
+    var legalMoves: [Int] {
         //Returns all availible moves where the position is .E(empty)
         return position.indices.filter { position[$0] == .E }
     }
@@ -92,7 +91,7 @@ struct Board {
         }
     }
     // Run minimax on every possible move to find the best one
-    func findBestMove(_ board: Board) -> Move {
+    func findBestMove(_ board: Board) -> Int {
         var bestEval = Int.min
         var bestMove = -1
         for move in board.legalMoves {
