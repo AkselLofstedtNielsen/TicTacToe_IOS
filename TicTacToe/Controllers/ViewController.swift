@@ -43,21 +43,17 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        //Initializing the buttonboard and implementing the board to the buttons titles.
         initButtons()
         implementBoardToTitles()
         
         //Mirrors player2s texts
         p2TurnLabel.transform = CGAffineTransform(rotationAngle: 3.14)
         p2TurnTextForFlip.transform = CGAffineTransform(rotationAngle: 3.14)
-        
-        
-            p1TurnLabel.text = p1Name
-            p2TurnLabel.text = p1Name
-        
-       
-        
-        
+        //Starts off by setting the turnlabels to player1s name
+        p1TurnLabel.text = p1Name
+        p2TurnLabel.text = p1Name
+
     }
 
     
@@ -77,6 +73,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func buttonPress(_ sender: UIButton) {
+        //Conditions for the buttonpress, cant press a button if its not "empty"
         if sender.title(for: .normal) == " "{
             switch sender{
             case a1:
@@ -118,6 +115,7 @@ class ViewController: UIViewController {
 
         }
         else if gameMode == 1{
+            p2Name = "Computer"
             //User Input + win/draw check
             board = board.move(index)
             implementBoardToTitles()
@@ -140,6 +138,7 @@ class ViewController: UIViewController {
             }
         }
         else if gameMode == 2{
+            p2Name = "Computer"
             board = board.move(index)
             //user input + win/draw check
             if board.isWin == true{
@@ -208,10 +207,11 @@ class ViewController: UIViewController {
         
     }
   
-    //Fix Player names per turn
-    //Back button
-
+    @IBAction func menuBtn(_ sender: Any) {
+        self.dismiss(animated: true)
     }
+
+}
     
 
 
