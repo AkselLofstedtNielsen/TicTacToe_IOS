@@ -65,6 +65,10 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MK9-PF-Ja5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="grX-MQ-LzQ" appends="YES" id="6De-2N-NHx"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="player1NameTextField" destination="m2w-cB-lC4" id="ZD4-bD-S3X"/>
@@ -74,6 +78,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IeZ-CX-e00" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="grX-MQ-LzQ">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="fcK-bb-zQr" id="aYp-QI-q8x"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-750.38167938931292" y="3.5211267605633805"/>
         </scene>

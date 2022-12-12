@@ -54,6 +54,9 @@ class StartViewController: UIViewController {
         
     }
 
+    @IBAction func dismissKeyboard(_ sender: Any) {
+        view.endEditing(true)
+    }
     
         
     }
