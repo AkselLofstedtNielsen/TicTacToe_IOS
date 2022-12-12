@@ -11,7 +11,8 @@ class ViewController: UIViewController {
     
     
     var gameMode = 2
-    //int that is being sent from startVC 0 = 1v1(standard), 1 = easyBot, 2 = hardBot
+    //int that is being sent from startVC
+    //0 = 1v1(standard), 1 = easy computer, 2 = hard computer.
     
     var p1Name : String?
     var p2Name : String?
@@ -207,9 +208,7 @@ class ViewController: UIViewController {
         
     }
   
-    @IBAction func menuBtn(_ sender: Any) {
-        self.dismiss(animated: true)
-    }
+
 
 }
     
