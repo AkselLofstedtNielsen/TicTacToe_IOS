@@ -5,7 +5,7 @@
 //  Created by Aksel Nielsen on 2022-12-07.
 //
 
-import Foundation
+import UIKit
 
 enum Piece: String {
     case X = "X"

@@ -51,8 +51,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="1v1"/>
-                                    <segment title="Easy Comp"/>
-                                    <segment title="Hard Comp"/>
+                                    <segment title="vs Random"/>
+                                    <segment title="vs MinMax"/>
                                 </segments>
                                 <connections>
                                     <action selector="segmentClick:" destination="fcK-bb-zQr" eventType="valueChanged" id="P8f-AN-nEb"/>
@@ -305,7 +305,7 @@
                                 <rect key="frame" x="32" y="213" width="328" height="427"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <mutableString key="text">How to play TACO - A classic Tic Tac Toe game. If the player chooses to play the classic 1v1 gamemode, it requires two players that take turns placing a "Piece" either a X or a O on the board. The player wins when he gets three X/O in a row and it is a draw if the board is full without a winner. If the player chooses the "Vs Random gamemode, the same rules apply but only one player gets to test their skills against a computer that has no game plan. If the player picks the last gamemode "Vs MinMax" he gets to test his skills against the unbeatable machine. This computer can simply not loose. </mutableString>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

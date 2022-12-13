@@ -9,7 +9,7 @@ import UIKit
 
 class StartViewController: UIViewController {
     let segueToGame = "segueFromStartToGame"
-
+    
     @IBOutlet weak var segmentControllOutlet: UISegmentedControl!
     
     var gameMode = 0
@@ -19,11 +19,11 @@ class StartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         
         
     }
-
+    
     @IBAction func segmentClick(_ sender: Any) {
         switch segmentControllOutlet.selectedSegmentIndex{
         case 0:
@@ -46,23 +46,20 @@ class StartViewController: UIViewController {
             destinationVC?.p1Name = player1NameTextField.text
             destinationVC?.p2Name = player2NameTextField.text
             destinationVC?.gameMode = gameMode
-        
         }
     }
     
     @IBAction func unwindToStartView(segue: UIStoryboardSegue){
         
     }
-
+    
     @IBAction func dismissKeyboard(_ sender: Any) {
         view.endEditing(true)
     }
-    
-        
-    }
+}
 
 
- 
-   
+
+
 
 

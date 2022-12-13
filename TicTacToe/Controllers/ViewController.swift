@@ -10,9 +10,9 @@ import UIKit
 class ViewController: UIViewController {
     
     
-    var gameMode = 2
+    var gameMode = 0
     //int that is being sent from startVC
-    //0 = 1v1(standard), 1 = easy computer, 2 = hard computer.
+    //0 = 1v1(standard), 1 = random computer, 2 = minMax computer.
     
     var p1Name : String?
     var p2Name : String?
@@ -21,9 +21,7 @@ class ViewController: UIViewController {
     var p2Score = 0
     
     @IBOutlet weak var p1TurnLabel: UILabel!
-    //x = p1
     @IBOutlet weak var p2TurnLabel: UILabel!
-    //o = p2
     @IBOutlet weak var p2TurnTextForFlip: UILabel!
     
     @IBOutlet weak var a1: UIButton!
@@ -51,12 +49,13 @@ class ViewController: UIViewController {
         //Mirrors player2s texts
         p2TurnLabel.transform = CGAffineTransform(rotationAngle: 3.14)
         p2TurnTextForFlip.transform = CGAffineTransform(rotationAngle: 3.14)
+        
         //Starts off by setting the turnlabels to player1s name
-        p1TurnLabel.text = p1Name
-        p2TurnLabel.text = p1Name
-
+        p1TurnLabel.text = "\(p1Name ?? "X")'s"
+        p2TurnLabel.text = "\(p1Name ?? "X")'s"
+        
     }
-
+    
     
     func initButtons(){
         //Adds the buttons to an array of buttons
@@ -72,7 +71,7 @@ class ViewController: UIViewController {
         buttonBoard.append(c2)
         buttonBoard.append(c3)
     }
-
+    
     @IBAction func buttonPress(_ sender: UIButton) {
         //Conditions for the buttonpress, cant press a button if its not "empty"
         if sender.title(for: .normal) == " "{
@@ -99,10 +98,11 @@ class ViewController: UIViewController {
                 break
             }
         }
-
+        
     }
     func makeMove (index : Int){
-        //Function for making a move and checking win or draw per move. For gamemodes 1-3.
+        //Function for making a move and checking win or draw per move.
+        //+ also adds the computer move and checks win/draw on that move for gamemode 1 & 2
         if gameMode == 0{
             board = board.move(index)
             implementBoardToTitles()
@@ -113,7 +113,7 @@ class ViewController: UIViewController {
             else if board.isDraw{
                 resultAlert(title: "Draw!")
             }
-
+            
         }
         else if gameMode == 1{
             p2Name = "Computer"
@@ -148,22 +148,23 @@ class ViewController: UIViewController {
             else if board.isDraw == true {
                 resultAlert(title: "Draw")
             }else{
-                    //Impossible computer input + win/draw check
-                    let aiMove = board.findBestMove(board)
-                    let aiBoard = board.move(aiMove)
-                    board = aiBoard
-                    implementBoardToTitles()
-                    if board.isWin == true{
-                        win()
-                    }
-                    else if board.isDraw{
-                        resultAlert(title: "Draw")
-                    }
-
+                //Min Max input + win/draw check
+                let minMax = board.findBestMove(board)
+                let minMaxBoard = board.move(minMax)
+                board = minMaxBoard
+                implementBoardToTitles()
+                if board.isWin == true{
+                    win()
+                }
+                else if board.isDraw{
+                    resultAlert(title: "Draw")
+                }
+                
             }
         }
     }
     func win(){
+        //Function to see who made the winning move, and adds a point to that players score.
         if board.position[board.lastMove].rawValue == "X"{
             p1Score += 1
             resultAlert(title: "Winner: \(p1Name ?? "X")")
@@ -173,44 +174,46 @@ class ViewController: UIViewController {
         }
     }
     func resultAlert(title : String){
+        //Function for the win or draw popup, with a button to reset the game.
         let message = "\n\(p1Name ?? "X") " + String(p1Score) + "\n\(p2Name ?? "O") " + String(p2Score)
         let ac = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         ac.addAction(UIAlertAction(title: "Reset", style: .default, handler: {(_) in
             self.resetBoard()
         }))
         self.present(ac, animated: true)
-     }
+    }
     
     func resetBoard(){
+        //Creates a empty board and replaces the current board
         board = board.newBoard()
         implementBoardToTitles()
     }
     func implementBoardToTitles (){
-        //Implementing the "Board" to the buttons titles for the user to see and interact with.
+        //Implementing the "Board" to the button titles for the user to see and interact with.
         var i = 0
         for pieces in board.position{
             buttonBoard[i].setTitle(pieces.rawValue, for: .normal)
             i += 1
-
+            
         }
         
     }
     func changeNameLabels (){
-        //func for changing the labels between turns to the payer whos turn it is.
-        if p1TurnLabel.text == p1Name && p2TurnLabel.text == p1Name{
-            p1TurnLabel.text = p2Name
-            p2TurnLabel.text = p2Name
+        //Function for changing the labels between turns to the payer whos turn it is.
+        if p1TurnLabel.text == "\(p1Name ?? "X")'s" && p2TurnLabel.text == "\(p1Name ?? "X")'s"{
+            p1TurnLabel.text = "\(p2Name ?? "O")'s"
+            p2TurnLabel.text = "\(p2Name ?? "O")'s"
         }
-        else if p1TurnLabel.text == p2Name && p2TurnLabel.text == p2Name{
-            p1TurnLabel.text = p1Name
-            p2TurnLabel.text = p1Name
+        else if p1TurnLabel.text == "\(p2Name ?? "O")'s" && p2TurnLabel.text == "\(p2Name ?? "O")'s"{
+            p1TurnLabel.text = "\(p1Name ?? "X")'s"
+            p2TurnLabel.text = "\(p1Name ?? "X")'s"
         }
         
     }
-  
-
-
-}
     
+    
+    
+}
+
 
 
