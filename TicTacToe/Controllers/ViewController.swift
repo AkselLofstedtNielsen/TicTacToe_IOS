@@ -98,12 +98,14 @@ class ViewController: UIViewController {
                 break
             }
         }
-        
     }
     func makeMove (index : Int){
         //Function for making a move and checking win or draw per move.
         //+ also adds the computer move and checks win/draw on that move for gamemode 1 & 2
-        if gameMode == 0{
+        switch gameMode{
+            
+            //1v1 Gamemode
+        case 0:
             board = board.move(index)
             implementBoardToTitles()
             changeNameLabels()
@@ -114,8 +116,8 @@ class ViewController: UIViewController {
                 resultAlert(title: "Draw!")
             }
             
-        }
-        else if gameMode == 1{
+            //vs Random Gamemode
+        case 1:
             p2Name = "Computer"
             //User Input + win/draw check
             board = board.move(index)
@@ -137,8 +139,9 @@ class ViewController: UIViewController {
                     resultAlert(title: "Draw")
                 }
             }
-        }
-        else if gameMode == 2{
+            
+            //vs MinMax Gamemode
+        case 2:
             p2Name = "Computer"
             board = board.move(index)
             //user input + win/draw check
@@ -161,8 +164,13 @@ class ViewController: UIViewController {
                 }
                 
             }
+        default:
+            break
         }
     }
+    
+    
+    
     func win(){
         //Function to see who made the winning move, and adds a point to that players score.
         if board.position[board.lastMove].rawValue == "X"{
@@ -212,8 +220,4 @@ class ViewController: UIViewController {
     }
     
     
-    
 }
-
-
-
