@@ -99,78 +99,46 @@ class ViewController: UIViewController {
             }
         }
     }
-    func makeMove (index : Int){
-        //Function for making a move and checking win or draw per move.
-        //+ also adds the computer move and checks win/draw on that move for gamemode 1 & 2
-        switch gameMode{
+    func makeMove(index: Int) {
+      // Update the board with the player's move
+      board = board.move(index)
+      implementBoardToTitles()
+      changeNameLabels()
+
+      // Check for win or draw
+      if board.isWin {
+        win()
+      } else if board.isDraw {
+        resultAlert(title: "Draw!")
+      } else {
+        // If game is not over, make a computer move if needed
+        switch gameMode {
+          case 1:
+            //vs Random
+            board = board.randomPlacement(board: board)
+            break
             
-            //1v1 Gamemode
-        case 0:
-            board = board.move(index)
-            implementBoardToTitles()
-            changeNameLabels()
-            if board.isWin{
-                win()
-            }
-            else if board.isDraw{
-                resultAlert(title: "Draw!")
-            }
+          case 2:
+            //vs MinMax
+            let minMax = board.findBestMove(board)
+            let minMaxBoard = board.move(minMax)
+            board = minMaxBoard
+            break
             
-            //vs Random Gamemode
-        case 1:
-            p2Name = "Computer"
-            //User Input + win/draw check
-            board = board.move(index)
-            implementBoardToTitles()
-            if board.isWin{
-                win()
-            }
-            else if board.isDraw{
-                resultAlert(title: "Draw")
-            }
-            else{
-                //Random Input+ win/draw check
-                board = board.randomPlacement(board: board)
-                implementBoardToTitles()
-                if board.isWin{
-                    win()
-                }
-                else if board.isDraw{
-                    resultAlert(title: "Draw")
-                }
-            }
-            
-            //vs MinMax Gamemode
-        case 2:
-            p2Name = "Computer"
-            board = board.move(index)
-            //user input + win/draw check
-            if board.isWin == true{
-                win()
-            }
-            else if board.isDraw == true {
-                resultAlert(title: "Draw")
-            }else{
-                //Min Max input + win/draw check
-                let minMax = board.findBestMove(board)
-                let minMaxBoard = board.move(minMax)
-                board = minMaxBoard
-                implementBoardToTitles()
-                if board.isWin == true{
-                    win()
-                }
-                else if board.isDraw{
-                    resultAlert(title: "Draw")
-                }
-                
-            }
-        default:
+          default:
             break
         }
+          
+        //Implement the computer move and check for win/draw
+        implementBoardToTitles()
+        if board.isWin {
+          win()
+        } else if board.isDraw {
+          resultAlert(title: "Draw")
+        }
+      }
     }
-    
-    
-    
+
     func win(){
         //Function to see who made the winning move, and adds a point to that players score.
         if board.position[board.lastMove].rawValue == "X"{
